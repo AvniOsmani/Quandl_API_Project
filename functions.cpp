@@ -68,7 +68,6 @@ void findExpectedReturn(std::string tickerName[], double _m[], double (*covarian
     }
     mean_value += adj_closing_values[istock][number_of_days-1];
     mean_values [istock] = (mean_value / number_of_days);
-    std::cout<<"the mean value is " <<mean_values [istock] <<"\n";
     _m[istock] = total_return / (number_of_days-1);
   }
 
@@ -93,7 +92,6 @@ void findInverseMatrix(double (*inverse_matrix)[3], double (*covariance_matrix)[
     determinant = determinant + (covariance_matrix[0][i] * (covariance_matrix[1][(i+1)%3] * covariance_matrix[2][(i+2)%3] - covariance_matrix[1][(i+2)%3] * covariance_matrix[2][(i+1)%3]));
   }
 
-  std::cout<<"\n\nInverse of matrix is: \n";
   for(int i = 0; i < 3; i++){
   	for(int j = 0; j < 3; j++)
   		inverse_matrix[i][j] = ((covariance_matrix[(j+1)%3][(i+1)%3] * covariance_matrix[(j+2)%3][(i+2)%3]) - (covariance_matrix[(j+1)%3][(i+2)%3] * covariance_matrix[(j+2)%3][(i+1)%3]))/ determinant;
@@ -117,17 +115,11 @@ void findMVPweights(double weights[3], double (*inverse_covariance)[3]){
     }
   }
 
-  //check if top worked
-  std::cout<<"\n" <<numerator[0] <<"\n" <<numerator[1] <<"\n" <<numerator[2] <<"\n";
-
   //find denominator
   double denominator = 0;
   for(int i = 0; i < 3; ++i){
     denominator += numerator[i];
   }
-
-  //check denominator
-  std::cout<<"\n" <<denominator <<"\n";
 
   //find MVPweights
   for(int i = 0; i < 3; ++i){

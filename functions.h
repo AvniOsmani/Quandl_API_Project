@@ -7,7 +7,6 @@
 #include <fstream>
 #include <cmath>
 #include <curl/curl.h>
-#include<iostream>
 
 void printToFile(std::string, const std::string &);
 static size_t writerF(void *ptr, size_t, size_t, void *userdata);
